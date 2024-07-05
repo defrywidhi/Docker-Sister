@@ -22,6 +22,7 @@ class Plantys extends Model
         'habitat',
         'category_id',
         'location_id',
+        'image',
         'created_at',
         'updated_at'
     ];

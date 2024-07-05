@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Plantys;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+
 
 class PlantysController extends Controller
 {
@@ -32,7 +35,14 @@ class PlantysController extends Controller
             'habitat' => 'nullable|string',
             'category_id' => 'required|exists:plant_categories,id',
             'location_id' => 'required|exists:plant_locations,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Validasi untuk gambar
         ]);
+
+        // Proses upload gambar
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
 
         $plant = Plantys::create($validatedData);
 
@@ -67,6 +77,16 @@ class PlantysController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Log permintaan yang diterima
+        Log::info('Update request received', [
+            'id' => $id, 
+            'data' => $request->all(), 
+            'files' => $request->file(),
+            'content_type' => $request->header('Content-Type'),
+            'request_headers' => $request->headers->all(),
+            'input' => $request->all()
+        ]);
+
         $plant = Plantys::find($id);
 
         if (!$plant) {
@@ -83,7 +103,18 @@ class PlantysController extends Controller
             'habitat' => 'nullable|string',
             'category_id' => 'required|exists:plant_categories,id',
             'location_id' => 'required|exists:plant_locations,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Validasi untuk gambar
         ]);
+
+        // Proses upload gambar jika ada
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($plant->image) {
+                Storage::disk('public')->delete($plant->image);
+            }
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
 
         $plant->update($validatedData);
         return response()->json([
@@ -106,6 +137,8 @@ class PlantysController extends Controller
                 'message' => 'Plant not found'
             ], 404);
         }
+
+        
 
         $plant->delete();
 
