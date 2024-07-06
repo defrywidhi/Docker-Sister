@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'employer'], functio
 Route::middleware(['auth:sanctum'])->group(function(){
     // CRUD PLANTS LOCATION
     Route::apiResource('/locations', LocationController::class);
-    // Route::get('locations/show/{id}', [LocationController::class, 'show']);
+    Route::get('locations/show/{id}', [LocationController::class, 'show']);
     Route::post('locations/store', [LocationController::class, 'store']);
     Route::put('locations/update/{id}', [LocationController::class, 'update']);
     Route::delete('locations/destroy/{id}', [LocationController::class, 'destroy']);
