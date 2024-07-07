@@ -1,8 +1,8 @@
 <!doctype html>
 
 <html>
-
-<head>
+    <head>
+    <script src="https://cdn.tailwindcss.com"></script>
 
    @include('includes.head')
 

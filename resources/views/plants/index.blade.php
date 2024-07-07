@@ -22,7 +22,7 @@
                 <td>{{ $plant->name }}</td>
                 <td>{{ $plant->scientific_name }}</td>
                 <td>{{ $plant->category->name ?? 'No category' }}</td>
-                <td>{{ $plant->location->location_name ?? 'No location' }}</td>
+                <td>{{ $plant->locations->location_name ?? 'No location' }}</td>
                 <td>
                     <a href="{{ route('plants.show', $plant->id) }}" class="btn btn-info">View</a>
                     <a href="{{ route('plants.edit', $plant->id) }}" class="btn btn-warning">Edit</a>

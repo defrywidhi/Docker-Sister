@@ -13,6 +13,7 @@ class WebPlantController extends Controller
     public function index()
     {
         $plants = Plantys::with('category', 'location')->get();
+        // dd($plants);
         return view('plants.index', compact('plants'));
 
     //     $plants = Plantys::with('category', 'location')->get();
@@ -33,7 +34,7 @@ class WebPlantController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'scientific_name' => 'nullable|string|max:255',
-            'location' => 'nullable|string|max:255',
+            // 'location' => 'nullable|string|max:255',
             'habitat' => 'nullable|string',
             'category_id' => 'required|exists:plant_categories,id',
             'location_id' => 'required|exists:plant_locations,id',
@@ -73,7 +74,7 @@ class WebPlantController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'scientific_name' => 'nullable|string|max:255',
-            'location' => 'nullable|string|max:255',
+            // 'location' => 'nullable|string|max:255',
             'habitat' => 'nullable|string',
             'category_id' => 'required|exists:plant_categories,id',
             'location_id' => 'required|exists:plant_locations,id',

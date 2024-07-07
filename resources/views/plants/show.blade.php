@@ -7,7 +7,7 @@
         <p><strong>Name:</strong> {{ $plant->name }}</p>
         <p><strong>Scientific Name:</strong> {{ $plant->scientific_name }}</p>
         <p><strong>Category:</strong> {{ $plant->category->name }}</p>
-        <p><strong>Location:</strong> {{ $plant->location->location_name }}</p>
+        {{-- <p><strong>Location:</strong> {{ $plant->location->location_name }}</p> --}}
         <p><strong>Description:</strong> {{ $plant->description }}</p>
         <p><strong>Habitat:</strong> {{ $plant->habitat }}</p>
         <p><strong>Image:</strong> 

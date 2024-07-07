@@ -18,7 +18,7 @@ class Plantys extends Model
         'name',
         'description',
         'scientific_name',
-        'location',
+        // 'location',
         'habitat',
         'category_id',
         'location_id',
