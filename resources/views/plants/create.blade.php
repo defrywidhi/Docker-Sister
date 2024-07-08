@@ -45,10 +45,10 @@
             </div>
             
             <!-- Location -->
-            <div>
+            {{-- <div>
                 <label for="location" class="block text-gray-700 font-bold mb-2">Location:</label>
                 <input type="text" id="location" name="location" value="{{ old('location') }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
+            </div> --}}
             
             <!-- Habitat -->
             <div>

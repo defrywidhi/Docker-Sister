@@ -14,6 +14,14 @@ class PlantLocation extends Model
         'id',
         'location_name',
         'latitude',
-        'longitude'
+        'longitude',
+        'created_at',
+        'updated_at'
     ];
+
+     // Relasi dengan Plantys
+     public function plants()
+     {
+         return $this->hasMany(Plantys::class, 'location_id');
+     }
 }
