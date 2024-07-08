@@ -1,48 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Plants</h1>
-    <a href="{{ route('plants.create') }}" class="btn btn-primary">Add New Plant</a>
-    <table class="table">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Scientific Name</th>
-        <th>Category</th>
-        <th>Location</th>
-        <th>Image</th>
-        <th>Actions</th>
-    </tr>
+<div class="container mx-auto p-4">
+    <!-- Perbesar dan pusatkan judul -->
+    <h1 class="text-4xl font-bold text-center mb-8">Plants</h1>
+    
+    <!-- Tombol untuk menambahkan plant baru -->
+    <a href="{{ route('plants.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Add New Plant</a>
+    
+    <!-- Tabel dengan styling Tailwind CSS -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr>
+                    <!-- Styling untuk header tabel -->
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-sm leading-4 font-semibold text-gray-700 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-sm leading-4 font-semibold text-gray-700 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-sm leading-4 font-semibold text-gray-700 uppercase tracking-wider">Scientific Name</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-sm leading-4 font-semibold text-gray-700 uppercase tracking-wider">Category</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-sm leading-4 font-semibold text-gray-700 uppercase tracking-wider">Location</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-sm leading-4 font-semibold text-gray-700 uppercase tracking-wider">Image</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-sm leading-4 font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
+                </tr>
             </thead>
             <tbody>
                 @foreach ($plants as $plant)
-                <tr>
-                    <td>{{ $plant->id }}</td>
-                    <td>{{ $plant->name }}</td>
-                    <td>{{ $plant->scientific_name }}</td>
-                    <td>{{ $plant->category->name ?? 'No category' }}</td>
-                    <td>{{ $plant->location->location_name ?? 'No location' }}</td>
-                    <td>
+                <tr class="bg-white border-b">
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->id }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->name }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->scientific_name }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->category->name ?? 'No category' }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->location->location_name ?? 'No location' }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">
                         @if($plant->image)
-                            <img src="{{ asset('storage/' . $plant->image) }}" alt="{{ $plant->name }}" width="100">
+                            <img src="{{ asset('storage/' . $plant->image) }}" alt="{{ $plant->name }}" class="h-24 w-24 object-cover rounded-md">
                         @else
-                            No Image
+                            <span class="text-gray-500">No Image</span>
                         @endif
                     </td>
-                    <td>
-                        <a href="{{ route('plants.show', $plant->id) }}" class="btn btn-info">View</a>
-                        <a href="{{ route('plants.edit', $plant->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('plants.destroy', $plant->id) }}" method="POST" style="display:inline;">
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">
+                        <a href="{{ route('plants.show', $plant->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded inline-block mr-2">View</a>
+                        <a href="{{ route('plants.edit', $plant->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded inline-block mr-2">Edit</a>
+                        <form action="{{ route('plants.destroy', $plant->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">Delete</button>
                         </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
-    </table>
+        </table>
+    </div>
 </div>
 @endsection

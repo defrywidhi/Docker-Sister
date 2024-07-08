@@ -8,7 +8,7 @@
 
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen">
 
 <div class="container">
 
@@ -18,7 +18,7 @@
 
    </header>
 
-   <div id="main" class="row">
+   <div id="main" class="min-h-screen">
 
            @yield('content')
 
