@@ -13,6 +13,14 @@ class PlantCategory extends Model
     protected $fillable = [
         'id',
         'name',
-        'description'
+        'description',
+        'created_at',
+        'updated_at'
     ];
+
+    // Relasi dengan Plantys
+    public function plants()
+    {
+        return $this->hasMany(Plantys::class, 'category_id');
+    }
 }

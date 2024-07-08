@@ -70,5 +70,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('plantys/show/{id}', [PlantysController::class, 'show']);
     Route::post('plantys/store', [PlantysController::class, 'store']);
     Route::put('plantys/update/{id}', [PlantysController::class, 'update']);
+    Route::post('plantys/update/{id}', [PlantysController::class, 'update']);
     Route::delete('plantys/destroy/{id}', [PlantysController::class, 'destroy']);
 });
