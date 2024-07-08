@@ -19,7 +19,9 @@
     <h1 class="text-4xl font-bold text-center mb-8">Plants</h1>
     
     <!-- Tombol untuk menambahkan plant baru -->
+    @auth
     <a href="{{ route('plants.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Add New Plant</a>
+    @endauth
     
     <!-- Tabel dengan styling Tailwind CSS -->
     <div class="overflow-x-auto">
@@ -52,6 +54,7 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">
+                        @auth
                         <a href="{{ route('plants.show', $plant->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded inline-block mr-2">View</a>
                         <a href="{{ route('plants.edit', $plant->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded inline-block mr-2">Edit</a>
                         <form action="{{ route('plants.destroy', $plant->id) }}" method="POST" class="inline-block">
@@ -59,6 +62,9 @@
                             @method('DELETE')
                             <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">Delete</button>
                         </form>
+                        @else
+                        <a href="{{ route('login.form') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded inline-block mr-2">Login to View</a>
+                        @endauth
                     </td>
                 </tr>
                 @endforeach

@@ -52,6 +52,12 @@ class AuthController extends Controller
            }
     }
 
+    // // REGISTER WEB
+    //         public function showRegistrationForm()
+    //     {
+    //         return view('auth.register');
+    //     }
+
 
 
     //LOGIN
@@ -101,6 +107,13 @@ class AuthController extends Controller
         }
     }
 
+
+    // // LOGIN FORM WEB
+    //         public function showLoginForm()
+    //     {
+    //         return view('auth.login');
+    //     }
+
  
 
     //LOGOUT
@@ -119,6 +132,15 @@ class AuthController extends Controller
             ], 500); 
         }
     }
+
+    // // LOGOUT WEB
+    // public function webLogout()
+    // {
+    //     Auth::logout();
+    
+    //     return redirect('/');
+    // }
+
 
    // FORGOT PASSWORD
     public function forgotPassword(Request $request)
@@ -160,6 +182,12 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    // // FORGOT PASSWORD WEB
+    //         public function showForgotPasswordForm()
+    //     {
+    //         return view('auth.passwords.email');
+    //     }
 
 
    // RESET PASSWORD
@@ -204,6 +232,12 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    // // RESET PASSWORD WEB
+    //         public function showResetPasswordForm($token)
+    //     {
+    //         return view('auth.passwords.reset', ['token' => $token]);
+    //     }
 
     
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\WebCategoryController;
 use App\Http\Controllers\WebLocationController;
 use App\Http\Controllers\WebPlantController;
@@ -39,3 +41,12 @@ Route::prefix('plants')->group(function () {
     Route::delete('/{id}', [WebPlantController::class, 'destroy'])->name('plants.destroy');
 });
 
+Route::get('/login', [AuthWebController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [AuthWebController::class, 'login'])->name('login');
+Route::get('/register', [AuthWebController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/register', [AuthWebController::class, 'register'])->name('register');
+Route::get('/forgot-password', [AuthWebController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [AuthWebController::class, 'forgotPassword'])->name('password.email');
+Route::get('/reset-password/{token}', [AuthWebController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [AuthWebController::class, 'resetPassword'])->name('password.update');
+Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout');
