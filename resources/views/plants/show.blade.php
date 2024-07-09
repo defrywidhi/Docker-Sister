@@ -11,11 +11,11 @@
         <p><strong class="font-semibold">Description:</strong> <span class="text-gray-700">{{ $plant->description }}</span></p>
         <p><strong class="font-semibold">Habitat:</strong> <span class="text-gray-700">{{ $plant->habitat }}</span></p>
         <p><strong class="font-semibold">Image:</strong>
-            @if($plant->image)
-                <img src="{{ asset('images/' . $plant->image) }}" alt="{{ $plant->name }}" class="mt-2 border rounded-md max-w-xs">
-            @else
-                <span class="text-gray-500">No image</span>
-            @endif
+                        @if($plant->image)
+                            <img src="{{ asset($plant->image) }}" alt="{{ $plant->name }}" class="h-24 w-24 object-cover rounded-md">
+                        @else
+                            <span class="text-gray-500">No Image</span>
+                        @endif
         </p>
         <a href="{{ route('plants.index') }}" class="inline-block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back to List</a>
     </div>

@@ -12,30 +12,29 @@ use Illuminate\Validation\ValidationException;
 
 class AuthWebController extends Controller
 {
-
-
+    // Menampilkan form login
     public function showLoginForm()
     {
-        return view('auth.login'); // Adjust the view name as per your application's structure
+        return view('auth.login'); // Sesuaikan dengan struktur view aplikasi Anda
     }
 
-     // Menampilkan form registrasi
-     public function showRegistrationForm()
-     {
-         return view('auth.register');
-     }
+    // Menampilkan form registrasi
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
 
-     public function showForgotPasswordForm()
+    // Menampilkan form lupa password
+    public function showForgotPasswordForm()
     {
         return view('auth.passwords.email');
     }
 
+    // Menampilkan form reset password
     public function showResetPasswordForm($token)
     {
         return view('auth.passwords.reset', ['token' => $token]);
     }
-
-
 
     // REGISTER WEB
     public function register(Request $request)
@@ -43,7 +42,7 @@ class AuthWebController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -59,7 +58,7 @@ class AuthWebController extends Controller
 
             Auth::login($user);
 
-            return redirect('/login'); // Ganti dengan halaman setelah registrasi berhasil
+            return redirect('/'); // Ganti dengan halaman setelah registrasi berhasil
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['message' => 'Registration failed.'])->withInput();
         }
@@ -148,3 +147,4 @@ class AuthWebController extends Controller
             : redirect()->back()->withErrors(['message' => 'Failed to reset password.']);
     }
 }
+

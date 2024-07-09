@@ -45,7 +45,7 @@
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->name }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->scientific_name }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->category->name ?? 'No category' }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->location->latitude ?? 'No location' }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">{{ $plant->location->location_name ?? 'No location' }}</td>
                     {{-- <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-700">
                         <img src="{{ asset($plant->image) }}" alt="image" class="h-24 w-24 object-cover">
                     </td> --}}
